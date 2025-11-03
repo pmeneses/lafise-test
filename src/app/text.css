@@ -1,0 +1,20 @@
+.caption1 {
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0px;
+    font-family: var(--font-poppins);
+}
+
+.label1 {
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0.1px;
+    font-family: var(--font-poppins);
+}
+
+.headline3 {
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.1px;
+    font-family: var(--font-poppins);
+}
