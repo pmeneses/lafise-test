@@ -5,44 +5,65 @@ import React from 'react';
 import { cn } from '@/util/clsx';
 import RateChange from './rateChange';
 import Icon from './icon';
+import { useRouter } from 'next/navigation';
+import { useAppSelector } from '@/store/hooks';
 
 const SideBard = () => {
+  const router = useRouter();
   const [selected, setSelected] = React.useState(0);
+  const sideBarOpen = useAppSelector((state) => state.app.sidebarOpen);
+
+  const collapsed = sideBarOpen === false;
 
   return (
-    <div className="max-w-[280px] w-full gap-6 flex flex-col">
-      <div className="flex items-center justify-center px-9 pt-6 pb-2">
-        <Icon style="w-[192px] h-[63px]" variant="companyLogoIcon" />
+    <div
+      className={cn(
+        'gap-6 flex flex-col border-r-[#F3F5F3] border-r bg-transparent',
+        collapsed ? 'w-20' : 'w-20 md:w-72',
+      )}
+    >
+      <div className="flex items-center justify-center px-2 md:px-9 pt-6 pb-2">
+        <Icon
+          style={collapsed ? 'hidden' : 'hidden md:inline h-10 md:w-[192px] md:h-[63px]'}
+          variant="companyLogoIcon"
+        />
       </div>
       <div className="flex flex-col gap-6">
         <ul className="mx-4 flex flex-col">
           {menuOptions.map((option, index) => (
             <li
               key={option.label}
-              className={[
-                'p-4 cursor-pointer flex justify-between rounded-sm mb-2 items-center',
+              className={cn(
+                'p-3 md:p-4 cursor-pointer flex justify-between rounded-sm mb-2 items-center',
                 selected === index ? 'bg-sidebar-active' : '',
-              ].join(' ')}
-              onClick={() => setSelected(index)}
+              )}
+              onClick={() => {
+                setSelected(index);
+                if (option.route) router.push(option.route);
+              }}
             >
               <div className="flex items-center gap-3">
                 <Icon
                   variant={option.icon}
-                  size={24}
+                  size={20}
                   svgClassName={cn({ 'fill-active': selected === index })}
                 />
+                {/* hide label when collapsed, show on md when expanded */}
                 <span
-                  className={cn('text-label font-medium caption1', {
-                    'text-active': selected === index,
-                  })}
+                  className={cn(
+                    collapsed ? 'hidden' : 'hidden text-label font-medium caption1 md:inline',
+                    { 'text-active': selected === index },
+                  )}
                 >
                   {option.label}
                 </span>
               </div>
               <Icon
                 variant="chevronRightIcon"
-                size={24}
-                svgClassName={cn({ 'fill-active': selected === index })}
+                size={20}
+                svgClassName={cn(collapsed ? 'hidden' : 'hidden md:inline', {
+                  'fill-active': selected === index,
+                })}
               />
             </li>
           ))}

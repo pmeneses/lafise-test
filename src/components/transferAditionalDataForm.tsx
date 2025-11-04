@@ -46,12 +46,12 @@ const TransferAditionalDataForm = () => {
         <Input
           {...register('debitConcept', { required: 'Este campo es requerido' })}
           label="Concepto de débito"
-          className="w-full h-12"
+          className="w-full min-w-[200px] h-12"
           error={formState.errors.debitConcept?.message}
         />
         <Input
           {...register('creditConcept', { required: 'Este campo es requerido' })}
-          className="w-full h-12"
+          className="w-full min-w-[200px] h-12"
           placeholder="Concepto de crédito"
           error={formState.errors.creditConcept?.message}
         />
@@ -62,7 +62,7 @@ const TransferAditionalDataForm = () => {
             required: 'Este campo es requerido',
             min: { value: 8, message: 'Este campo debe tener al menos 8 caracteres' },
           })}
-          className="w-full h-12"
+          className="w-full min-w-[200px] h-12"
           placeholder="Referencia"
           error={formState.errors.reference?.message}
         />
@@ -70,7 +70,7 @@ const TransferAditionalDataForm = () => {
           {...register('sendConfirmationTo', {
             min: { value: 10, message: 'Este campo debe tener al menos 10 caracteres' },
           })}
-          className="w-full h-12"
+          className="w-full min-w-[200px] h-12"
           placeholder="Enviar confirmación a:"
           error={formState.errors.sendConfirmationTo?.message}
         />

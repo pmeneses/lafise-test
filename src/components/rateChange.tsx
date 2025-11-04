@@ -3,10 +3,16 @@ import Select from './select';
 import React, { useMemo } from 'react';
 import { rateChanges } from '@/data/rateChange';
 import Icon from './icon';
+import { useAppSelector } from '@/store/hooks';
+import { cn } from '@/util/clsx';
 
 const RateChange = () => {
   const [fromCurrency, setFromCurrency] = React.useState<string>();
   const [toCurrency, setToCurrency] = React.useState<string>();
+
+  const sideBarOpen = useAppSelector((state) => state.app.sidebarOpen);
+
+  const collapsed = sideBarOpen === false;
 
   const [fromRate, toRate] = useMemo(() => {
     const findRate = (a?: string, b?: string) =>
@@ -20,7 +26,12 @@ const RateChange = () => {
   }, [fromCurrency, toCurrency]);
 
   return (
-    <div className="mx-4 flex flex-col gap-4">
+    <div
+      className={cn('hidden mx-4 flex-col gap-4', {
+        hidden: collapsed,
+        'md:flex': !collapsed,
+      })}
+    >
       <div className="h-px bg-[#F0F0F0]" />
       <p className="text-label font-semibold headline3">Tasa de cambio</p>
       <div className="flex gap-2.5">

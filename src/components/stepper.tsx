@@ -13,7 +13,7 @@ const Stepper = ({ totalSteps, currentStep, stepsLabels }: Props) => {
       {Array.from({ length: totalSteps }).map((_, index) => (
         <div
           key={index}
-          className="flex flex-col items-center justify-center min-w-[140px] text-center relative"
+          className="flex flex-col items-center justify-center min-w-5 md:min-w-[140px] text-center relative"
         >
           <div className="relative flex items-center justify-center w-full h-[50px]">
             <Icon

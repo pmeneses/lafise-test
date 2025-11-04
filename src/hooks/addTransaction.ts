@@ -2,6 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { transactionSlice } from '@/store/transaction';
+import { transferSlice } from '@/store/transfer';
 import customFetch from '@/util/fetch';
 import { useRouter } from 'next/navigation';
 
@@ -74,6 +75,8 @@ const useAddTransaction = () => {
           balance: originAccount.balance - result.amount.value,
         }),
       );
+
+      dispatch(transferSlice.actions.clear());
 
       alert('Transferencia realizada con éxito');
 

@@ -13,6 +13,7 @@ type Account = {
 };
 
 type ResponseType = {
+  profile_photo: string;
   products: Account[];
 };
 
@@ -25,14 +26,13 @@ const useGetUser = () => {
       return;
     }
 
-    const result = await customFetch<ResponseType>('http://localhost:3000/api/user').catch(
-      (err) => {
-        return null;
-      },
-    );
+    const result = await customFetch<ResponseType>('http://localhost:3000/api/user').catch(() => {
+      return null;
+    });
 
     if (result) {
       dispatch(userSlice.actions.addProducts(result.products));
+      dispatch(userSlice.actions.setProfilePhoto(result.profile_photo));
     }
   };
 

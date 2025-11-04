@@ -87,7 +87,7 @@ const TransferAccountForm = () => {
         <Select
           options={transactionTypes}
           label="Tipo de transacción"
-          className="w-full data-[size=default]:h-12"
+          className="w-full min-w-[200px] data-[size=default]:h-12"
           value={watch('transactionType')}
           error={formState.errors.transactionType?.message?.toString()}
           onSelect={(value) => {
@@ -102,7 +102,7 @@ const TransferAccountForm = () => {
             balance: formatCurrency(c.balance, c.currency as Currency),
           }))}
           label="Cuenta"
-          className="w-full data-[size=default]:h-12"
+          className="w-full min-w-[200px] data-[size=default]:h-12"
           value={watch('accountId').toString()}
           error={formState.errors.accountId?.message?.toString()}
           onSelect={(value) => {

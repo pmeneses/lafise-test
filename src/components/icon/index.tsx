@@ -18,6 +18,9 @@ export const variants = {
   nioFlagIcon: require('./assets/nioFlagIcon'),
   stepCheck: require('./assets/stepCheck'),
   stepUncheck: require('./assets/stepUncheck'),
+  menuIcon: require('./assets/menuIcon'),
+  notifyIcon: require('./assets/notifyIcon'),
+  searchIcon: require('./assets/searchIcon'),
 };
 
 export type IconPropsTypes = {

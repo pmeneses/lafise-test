@@ -7,7 +7,7 @@ const PageWrapper = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return <div className={cn('flex px-10', className)}>{children}</div>;
+  return <div className={cn('flex px-6', className)}>{children}</div>;
 };
 
 export default PageWrapper;

@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { set } from 'react-hook-form';
 
 type ProductType = {
   type: string;
@@ -9,10 +10,12 @@ type ProductType = {
 };
 
 type userState = {
+  profilePhoto: string;
   products: ProductType[];
 };
 
 const initialState: userState = {
+  profilePhoto: '',
   products: [],
 };
 
@@ -22,6 +25,9 @@ export const userSlice = createSlice({
   reducers: {
     addProducts(state, action: PayloadAction<ProductType[]>) {
       state.products = action.payload;
+    },
+    setProfilePhoto(state, action: PayloadAction<string>) {
+      state.profilePhoto = action.payload;
     },
     clearProducts(state) {
       state = initialState;

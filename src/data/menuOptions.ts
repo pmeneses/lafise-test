@@ -17,13 +17,12 @@ menuOptions.push({
 menuOptions.push({
   label: 'Transferir',
   icon: 'transferIcon',
-  route: '/transferir',
+  route: '/transfer',
 });
 
 menuOptions.push({
   label: 'Pagar',
   icon: 'payIcon',
-  route: '/pagar',
 });
 
 menuOptions.push({
