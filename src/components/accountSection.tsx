@@ -1,16 +1,11 @@
 "use client";
 
-import useGetUser from "@/hooks/getUser";
 import { useAppSelector } from "@/store/hooks";
 import { Currency, formatCurrency } from "@/util/currency";
-import React from "react";
 import Icon from "./icon";
 
 const AccountSection = () => {
-    const getUser = useGetUser();
     const accounts = useAppSelector((state) => state.user.products.filter((product) => product.type === "Account"));
-
-    React.useEffect(() => { getUser.execute() }, []);
 
     return (
         <div className="flex flex-col">

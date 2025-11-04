@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import FormGroup from "./formGroup";
 import { TransferSteps } from "@/constant/transfer";
 import { useEffect } from "react";
+import AccountSelect from "./accountSelect";
+import { Currency, formatCurrency } from "@/util/currency";
 
 const TransferAccountForm = () => {
     const router = useRouter();
@@ -77,9 +79,11 @@ const TransferAccountForm = () => {
                         setValue("transactionType", value)
                     }}
                 />
-                <Select options={accounts.map((c) => ({
+                <AccountSelect options={accounts.map((c) => ({
                     value: c.id,
-                    label: `${c.id} - ${c.currency} - Saldo: ${c.balance}`,
+                    label: `${c.currency} ${c.alias}`,
+                    accountNumber: `${c.id}`,
+                    balance: formatCurrency(c.balance, c.currency as Currency),
                 }))} label="Cuenta" className="w-full data-[size=default]:h-12"
                     value={watch("accountId").toString()}
                     error={formState.errors.accountId?.message?.toString()}
@@ -104,14 +108,6 @@ const TransferAccountForm = () => {
                     Continuar
                 </button>
             </div>
-            {/* <FormGroup>
-            <Input label="Concepto de débito" className="w-full h-12" />
-            <Input className="w-full h-12" placeholder="Concepto de crédito" />
-        </FormGroup>
-        <FormGroup>
-            <Input className="w-full h-12" placeholder="Referencia" />
-            <Input className="w-full h-12" placeholder="Enviar confirmación a:" />
-        </FormGroup> */}
         </div>
     )
 }

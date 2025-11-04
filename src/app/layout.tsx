@@ -5,6 +5,7 @@ import SideBard from "@/components/sideBar";
 import ReduxProvider from "@/providers/ReduxProvider";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
+import AppWrapper from "@/components/appWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,10 +39,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased flex flex-col`}
       >
         <ReduxProvider>
-          <div className="flex max-w-[1440px] w-full self-center bg-background min-h-screen">
-            <SideBard />
-            <main className="flex flex-col flex-1 bg-[#FFFFFF]">{children}</main>
-          </div>
+          <AppWrapper>
+            <div className="flex max-w-[1440px] w-full self-center bg-background min-h-screen">
+              <SideBard />
+              <main className="flex flex-col flex-1 bg-[#FFFFFF]">{children}</main>
+            </div>
+          </AppWrapper>
         </ReduxProvider>
       </body>
     </html>

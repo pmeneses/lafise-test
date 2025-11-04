@@ -7,11 +7,13 @@ import FormGroup from "./formGroup";
 import { TransferSteps } from "@/constant/transfer";
 import CurrencyInput from "react-currency-input-field";
 import { cn } from "@/util/clsx";
+import { useEffect } from "react";
 
 const TransferAmountForm = () => {
     const dispatch = useAppDispatch();
     const fromAccount = useAppSelector((state) => state.transfer.accountFrom);
     const accounts = useAppSelector((state) => state.user.products.filter((p) => p.type === "Account"));
+    const transferState = useAppSelector((state) => state.transfer);
 
     const fromAccountData = accounts.find((a) => a.id === fromAccount);
 
@@ -31,6 +33,12 @@ const TransferAmountForm = () => {
             amount: data.amount,
         }));
     };
+
+    useEffect(() => {
+        if (transferState.amount) {
+            setValue("amount", transferState.amount);
+        }
+    }, [transferState.amount, setValue]);
 
     return (
         <div className="flex flex-col py-6 gap-7">
