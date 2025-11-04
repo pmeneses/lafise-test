@@ -1,7 +1,7 @@
-import { errorResponse } from "@/util/error-response";
-import customFetch from "@/util/fetch";
-import { json } from "@/util/shared";
-import { successResponse } from "@/util/success-response";
+import { errorResponse } from '@/util/error-response';
+import customFetch from '@/util/fetch';
+import { json } from '@/util/shared';
+import { successResponse } from '@/util/success-response';
 
 type Amount = {
   currency: string;
@@ -29,20 +29,24 @@ export async function POST(req: Request) {
       destination: number;
     }>(request.data, {});
 
-    const res = await customFetch<trxResponse>("http://localhost:5566/transactions", {
-      method: "POST",
-    }, {
-      "origin": payload.origin,
-      "destination": payload.destination,
-      "amount": {
-        "currency": payload.currency,
-        "value": payload.amount
-      }
-    });
+    const res = await customFetch<trxResponse>(
+      'http://localhost:5566/transactions',
+      {
+        method: 'POST',
+      },
+      {
+        origin: payload.origin,
+        destination: payload.destination,
+        amount: {
+          currency: payload.currency,
+          value: payload.amount,
+        },
+      },
+    );
 
     return successResponse(res);
   } catch (err) {
     console.log(err);
-    return errorResponse("Failed to add transaction", 500);
+    return errorResponse('Failed to add transaction', 500);
   }
 }

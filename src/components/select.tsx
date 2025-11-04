@@ -6,17 +6,17 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from '@/components/ui/select';
 
 type props = {
-    value?:string;
-    placeholder?: string;
-    options?: { value: string; label: string }[];
-    className?: string;
-    onSelect?: (value: string) => void;
-    label?: string;
-    error?: string;
-}
+  value?: string;
+  placeholder?: string;
+  options?: { value: string; label: string }[];
+  className?: string;
+  onSelect?: (value: string) => void;
+  label?: string;
+  error?: string;
+};
 
 const Select = ({ value, placeholder, options = [], className, onSelect, label, error }: props) => {
   return (
@@ -28,19 +28,23 @@ const Select = ({ value, placeholder, options = [], className, onSelect, label, 
         </SelectTrigger>
         {options.length > 0 && (
           <SelectContent>
-              <SelectGroup>
-                  {options.map((option) => (
-                      <SelectItem className="caption1 font-medium" key={option.value} value={option.value}>
-                          <SelectLabel>{option.label}</SelectLabel>
-                      </SelectItem>
-                  ))}
-              </SelectGroup>
+            <SelectGroup>
+              {options.map((option) => (
+                <SelectItem
+                  className="caption1 font-medium"
+                  key={option.value}
+                  value={option.value}
+                >
+                  <SelectLabel>{option.label}</SelectLabel>
+                </SelectItem>
+              ))}
+            </SelectGroup>
           </SelectContent>
         )}
       </BaseSelect>
       {error && <p className="caption2 text-red-500">{error}</p>}
     </div>
-  )
-}
+  );
+};
 
 export default Select;

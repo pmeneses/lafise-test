@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type ProductType = {
   type: string;
@@ -17,7 +17,7 @@ const initialState: userState = {
 };
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     addProducts(state, action: PayloadAction<ProductType[]>) {

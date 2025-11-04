@@ -1,5 +1,5 @@
-import AccountSection from "@/components/accountSection";
-import PageWrapper from "@/components/pageWrapper";
+import AccountSection from '@/components/accountSection';
+import PageWrapper from '@/components/pageWrapper';
 
 export default function Home() {
   return (

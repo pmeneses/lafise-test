@@ -29,18 +29,13 @@ export type IconPropsTypes = {
   svgClassName?: string;
 };
 
-const Icon: React.FC<IconPropsTypes> = ({
-  variant,
-  size,
-  style,
-  svgClassName,
-}) => {
+const Icon: React.FC<IconPropsTypes> = ({ variant, size, style, svgClassName }) => {
   const Component: React.FC<React.SVGProps<SVGSVGElement>> = variants[variant]?.default;
 
   if (!Component) return null;
 
   return (
-    <div className={["flex flex-col items-center justify-center", style].join(" ")}>
+    <div className={['flex flex-col items-center justify-center', style].join(' ')}>
       <div
         className="flex items-center justify-center"
         style={size ? { width: size, height: size } : {}}

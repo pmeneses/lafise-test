@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState, type ReactNode } from "react";
-import { Provider } from "react-redux";
-import { makeStore } from "@/store/store";
-import { PersistGate } from "redux-persist/integration/react";
-import { persistStore } from "redux-persist";
+import React, { useState, type ReactNode } from 'react';
+import { Provider } from 'react-redux';
+import { makeStore } from '@/store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 
 export default function ReduxProvider({ children }: { children: ReactNode }) {
   // create the store once on the client

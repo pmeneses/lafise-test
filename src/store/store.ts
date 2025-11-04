@@ -1,11 +1,11 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { userSlice } from "./accountSlice";
-import createWebStorage from "redux-persist/lib/storage/createWebStorage";
-import { PersistConfig, persistReducer } from "redux-persist";
-import { transferSlice } from "./transfer";
-import { transactionSlice } from "./transaction";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { userSlice } from './accountSlice';
+import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
+import { PersistConfig, persistReducer } from 'redux-persist';
+import { transferSlice } from './transfer';
+import { transactionSlice } from './transaction';
 
-const isServer = typeof window === "undefined";
+const isServer = typeof window === 'undefined';
 
 function createNoopStorage() {
   return {
@@ -22,14 +22,10 @@ function createNoopStorage() {
 }
 
 const persistConfig: PersistConfig<ReturnType<typeof rootReducer>> = {
-  key: "root",
-  storage: isServer ? createNoopStorage() : createWebStorage("session"),
-  whitelist: [
-    "user",
-    "transaction"
-  ],
+  key: 'root',
+  storage: isServer ? createNoopStorage() : createWebStorage('session'),
+  whitelist: ['user', 'transaction'],
 };
-
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
@@ -51,5 +47,5 @@ export const makeStore = () => {
 
 // Infer the type of makeStore
 export type AppStore = ReturnType<typeof makeStore>;
-export type RootState = ReturnType<AppStore["getState"]>;
-export type AppDispatch = AppStore["dispatch"];
+export type RootState = ReturnType<AppStore['getState']>;
+export type AppDispatch = AppStore['dispatch'];

@@ -19,15 +19,15 @@ export enum HttpStatusErrorCode {
 
 export const errorResponse = (error: any, httpCode = HttpStatusErrorCode.INTERNAL_SERVER_ERROR) => {
   let data: { [key: string]: any } = {};
-  if (typeof error === "string") data["message"] = error;
+  if (typeof error === 'string') data['message'] = error;
   else data = { ...error };
 
   const headers = new Headers({
-    Expires: "0",
-    Pragma: "no-cache",
-    "Content-Type": "application/json",
-    "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-    "Surrogate-Control": "no-store",
+    Expires: '0',
+    Pragma: 'no-cache',
+    'Content-Type': 'application/json',
+    'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+    'Surrogate-Control': 'no-store',
   });
 
   return new Response(JSON.stringify(data), {

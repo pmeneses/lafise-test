@@ -1,6 +1,6 @@
-import { errorResponse } from "@/util/error-response";
-import customFetch from "@/util/fetch";
-import { successResponse } from "@/util/success-response";
+import { errorResponse } from '@/util/error-response';
+import customFetch from '@/util/fetch';
+import { successResponse } from '@/util/success-response';
 
 export async function GET(_: Request) {
   try {
@@ -16,10 +16,10 @@ export async function GET(_: Request) {
       }[];
     };
 
-    const res = await customFetch<UserResponse>("http://localhost:5566/users/12345");
+    const res = await customFetch<UserResponse>('http://localhost:5566/users/12345');
 
     if (!res || !Array.isArray(res.products)) {
-      throw new Error("Invalid user response");
+      throw new Error('Invalid user response');
     }
 
     res.products = await Promise.all(
@@ -36,11 +36,11 @@ export async function GET(_: Request) {
           balance: details.balance,
           currency: details.currency,
         };
-      })
+      }),
     );
 
     return successResponse(res);
   } catch (err) {
-    return errorResponse("Failed to get user data", 500);
+    return errorResponse('Failed to get user data', 500);
   }
 }
