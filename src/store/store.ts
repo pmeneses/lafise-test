@@ -1,13 +1,42 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { userSlice } from "./accountSlice";
+import createWebStorage from "redux-persist/lib/storage/createWebStorage";
+import { PersistConfig, persistReducer } from "redux-persist";
+
+const isServer = typeof window === "undefined";
+
+function createNoopStorage() {
+  return {
+    getItem(_key: string) {
+      return Promise.resolve(null);
+    },
+    setItem(_key: string, value: string) {
+      return Promise.resolve(value);
+    },
+    removeItem(_key: string) {
+      return Promise.resolve();
+    },
+  };
+}
+
+const persistConfig: PersistConfig<ReturnType<typeof rootReducer>> = {
+  key: "root",
+  storage: isServer ? createNoopStorage() : createWebStorage("session"),
+  whitelist: [
+    "user",
+  ],
+};
+
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
 });
 
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 export const makeStore = () => {
   return configureStore({
-    reducer: rootReducer,
+    reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: false,

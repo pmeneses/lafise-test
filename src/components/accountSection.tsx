@@ -3,7 +3,6 @@
 import useGetUser from "@/hooks/getUser";
 import { useAppSelector } from "@/store/hooks";
 import { Currency, formatCurrency } from "@/util/currency";
-import Image from "next/image";
 import React from "react";
 import Icon from "./icon";
 

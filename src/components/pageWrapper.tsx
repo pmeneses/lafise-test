@@ -1,6 +1,6 @@
 const PageWrapper = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div className="flex min-h-screen max-w-[1200px] bg-background">
+        <div className="flex px-10">
             {children}
         </div>
     );
