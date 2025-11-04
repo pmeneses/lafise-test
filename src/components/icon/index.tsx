@@ -12,7 +12,10 @@ export const variants = {
   savingIcon: require('./assets/savingIcon'),
   chevronRightIcon: require('./assets/chevronRight'),
   companyLogoIcon: require('./assets/companyLogo'),
-  changeRateIcon: require('./assets/changeRate')
+  changeRateIcon: require('./assets/changeRate'),
+  copyIcon: require('./assets/copyIcon'),
+  usaFlagIcon: require('./assets/usaFlagIcon'),
+  nioFlagIcon: require('./assets/nioFlagIcon'),
 };
 
 export type IconPropsTypes = {
