@@ -38,9 +38,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased flex flex-col`}
       >
         <ReduxProvider>
-          <div className="flex max-w-[1200px] w-full self-center bg-background min-h-screen">
+          <div className="flex max-w-[1440px] w-full self-center bg-background min-h-screen">
             <SideBard />
-            <main className="flex flex-col flex-1">{children}</main>
+            <main className="flex flex-col flex-1 bg-[#FFFFFF]">{children}</main>
           </div>
         </ReduxProvider>
       </body>

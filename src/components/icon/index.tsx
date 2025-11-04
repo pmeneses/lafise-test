@@ -16,6 +16,8 @@ export const variants = {
   copyIcon: require('./assets/copyIcon'),
   usaFlagIcon: require('./assets/usaFlagIcon'),
   nioFlagIcon: require('./assets/nioFlagIcon'),
+  stepCheck: require('./assets/stepCheck'),
+  stepUncheck: require('./assets/stepUncheck'),
 };
 
 export type IconPropsTypes = {

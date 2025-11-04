@@ -1,4 +1,4 @@
-const customFetch = async <T>(url: string, options?: RequestInit, body?: any): Promise<T> => {
+const customFetch = async <T>(url: string, options?: Omit<RequestInit, "body">, body?: any): Promise<T> => {
   const response = await fetch(url, {
     ...options,
     body: JSON.stringify(body),

@@ -1,6 +1,8 @@
-const PageWrapper = ({ children }: { children: React.ReactNode }) => {
+import { cn } from "@/util/clsx";
+
+const PageWrapper = ({ children, className }: { children: React.ReactNode, className?: string }) => {
     return (
-        <div className="flex px-10">
+        <div className={cn("flex px-10", className)}>
             {children}
         </div>
     );

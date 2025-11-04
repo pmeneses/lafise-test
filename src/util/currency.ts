@@ -4,7 +4,7 @@ export enum Currency {
     EUR = "EUR",
 }
 
-const currencySymbols: Record<Currency, string> = {
+export const currencySymbols: Record<Currency, string> = {
     [Currency.USD]: "USD",
     [Currency.NIO]: "C$",
     [Currency.EUR]: "EUR",

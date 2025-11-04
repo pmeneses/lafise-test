@@ -2,6 +2,8 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { userSlice } from "./accountSlice";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import { PersistConfig, persistReducer } from "redux-persist";
+import { transferSlice } from "./transfer";
+import { transactionSlice } from "./transaction";
 
 const isServer = typeof window === "undefined";
 
@@ -24,12 +26,15 @@ const persistConfig: PersistConfig<ReturnType<typeof rootReducer>> = {
   storage: isServer ? createNoopStorage() : createWebStorage("session"),
   whitelist: [
     "user",
+    "transaction"
   ],
 };
 
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
+  transfer: transferSlice.reducer,
+  transaction: transactionSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
