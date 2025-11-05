@@ -8,6 +8,7 @@ import { TransferSteps } from '@/constant/transfer';
 import CurrencyInput from 'react-currency-input-field';
 import { cn } from '@/util/clsx';
 import { useEffect } from 'react';
+import FormActions from './formActions';
 
 const TransferAmountForm = () => {
   const dispatch = useAppDispatch();
@@ -72,22 +73,15 @@ const TransferAmountForm = () => {
           )}
         </div>
       </FormGroup>
-      <div className="flex items-center justify-center gap-5 flex-2">
-        <button
-          className="h-12 border-[#00593B] border px-4 rounded-sm text-[#00593B] caption1 font-medium"
-          onClick={() => {
-            dispatch(transferSlice.actions.setStep(TransferSteps.Step2));
-          }}
-        >
-          Atrás
-        </button>
-        <button
-          className="h-12 bg-[#00593B] px-4 rounded-sm text-[#FFFFFF] caption1 font-medium"
-          onClick={handleSubmit(onSubmit)}
-        >
-          Continuar
-        </button>
-      </div>
+      <FormActions
+        backLabel='Atrás'
+        className='flex-2'
+        continueLabel='Continuar'
+        onBack={() => {
+          dispatch(transferSlice.actions.setStep(TransferSteps.Step2));
+        }}
+        onContinue={handleSubmit(onSubmit)}
+      />
     </div>
   );
 };

@@ -11,6 +11,7 @@ import { TransferSteps } from '@/constant/transfer';
 import { useEffect } from 'react';
 import AccountSelect from './accountSelect';
 import { Currency, formatCurrency } from '@/util/currency';
+import FormActions from './formActions';
 
 const TransferAccountForm = () => {
   const router = useRouter();
@@ -110,28 +111,21 @@ const TransferAccountForm = () => {
           }}
         />
       </FormGroup>
-      <div className="flex items-center  justify-center gap-5 flex-2">
-        <button
-          className="h-12 border-[#00593B] border px-4 rounded-sm text-[#00593B] caption1 font-medium"
-          onClick={() => {
-            if (transfer.step === TransferSteps.Step1) {
-              router.push('/');
-            }
+      <FormActions
+        backLabel='Atrás'
+        className='flex-2'
+        continueLabel='Continuar'
+        onBack={() => {
+          if (transfer.step === TransferSteps.Step1) {
+            router.push('/');
+          }
 
-            if (transfer.step === TransferSteps.Step2) {
-              dispatch(transferSlice.actions.setStep(TransferSteps.Step1));
-            }
-          }}
-        >
-          Atrás
-        </button>
-        <button
-          className="h-12 bg-[#00593B] px-4 rounded-sm text-[#FFFFFF] caption1 font-medium"
-          onClick={handleSubmit(onSubmit)}
-        >
-          Continuar
-        </button>
-      </div>
+          if (transfer.step === TransferSteps.Step2) {
+            dispatch(transferSlice.actions.setStep(TransferSteps.Step1));
+          }
+        }}
+        onContinue={handleSubmit(onSubmit)}
+      />
     </div>
   );
 };

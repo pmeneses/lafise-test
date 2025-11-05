@@ -7,6 +7,7 @@ import FormGroup from './formGroup';
 import { TransferSteps } from '@/constant/transfer';
 import useAddTransaction from '@/hooks/addTransaction';
 import Input from './Input';
+import FormActions from './formActions';
 
 const TransferAditionalDataForm = () => {
   const dispatch = useAppDispatch();
@@ -75,22 +76,15 @@ const TransferAditionalDataForm = () => {
           error={formState.errors.sendConfirmationTo?.message}
         />
       </FormGroup>
-      <div className="flex items-center justify-center gap-5 flex-2">
-        <button
-          className="h-12 border-[#00593B] border px-4 rounded-sm text-[#00593B] caption1 font-medium"
-          onClick={() => {
-            dispatch(transferSlice.actions.setStep(TransferSteps.Step3));
-          }}
-        >
-          Atrás
-        </button>
-        <button
-          className="h-12 bg-[#00593B] px-4 rounded-sm text-[#FFFFFF] caption1 font-medium"
-          onClick={handleSubmit(onSubmit)}
-        >
-          Continuar
-        </button>
-      </div>
+      <FormActions
+        backLabel='Atrás'
+        className='flex-3'
+        continueLabel='Continuar'
+        onBack={() => {
+          dispatch(transferSlice.actions.setStep(TransferSteps.Step3));
+        }}
+        onContinue={handleSubmit(onSubmit)}
+      />
     </div>
   );
 };
