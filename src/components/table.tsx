@@ -7,8 +7,12 @@ import {
   TableHeader,
   TableRow,
 } from './ui/table';
+import DatePicker from './datePicker';
+import React from 'react';
 
 type Props = {
+  filterDateRange?: boolean;
+  onChangeDateRange?: (from: Date | undefined, to: Date | undefined) => void;
   columns: {
     label: string;
     className?: string;
@@ -21,9 +25,26 @@ type Props = {
   }[];
 };
 
-const Table = ({ columns, data }: Props) => {
+const Table = ({ columns, data, onChangeDateRange, filterDateRange = false }: Props) => {
+  const [fromDate, setFromDate] = React.useState<Date>();
+  const [toDate, setToDate] = React.useState<Date>();
+
   return (
     <>
+      {filterDateRange && (
+        <div className="flex gap-4 mb-4 items-end">
+          <DatePicker label="Filtrar desde" onChange={setFromDate} />
+          <DatePicker label="Filtrar hasta" onChange={setToDate} />
+          <button
+            className="h-12 bg-[#00593B] px-4 rounded-sm text-[#FFFFFF] caption1 font-medium"
+            onClick={() => {
+              onChangeDateRange?.(fromDate, toDate);
+            }}
+          >
+            Aplicar
+          </button>
+        </div>
+      )}
       <BaseTable className="hidden md:table">
         <TableHeader className="h-16">
           <TableRow>
