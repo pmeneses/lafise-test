@@ -11,9 +11,9 @@ import { useAppSelector } from '@/store/hooks';
 export default function Transfer() {
   const transferStep = useAppSelector((state) => state.transfer.step);
   return (
-    <PageWrapper className="p-3 md:p-10 flex-col">
+    <PageWrapper className="p-3 md:p-10 flex-col min-h-[800px]">
       <h2 className="headline2 font-bold">Transferir </h2>
-      <div className="flex flex-col border border-[#DFE1DF] rounded-lg py-4 gap-6 mt-4">
+      <div className="flex flex-col border border-[#DFE1DF] rounded-lg py-4 gap-6 mt-4 grow">
         <Stepper
           totalSteps={4}
           currentStep={transferStep}

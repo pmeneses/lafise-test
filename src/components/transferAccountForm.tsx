@@ -82,8 +82,8 @@ const TransferAccountForm = () => {
   ]);
 
   return (
-    <div className="flex flex-col py-6 gap-7">
-      <FormGroup className="bg-[#F9FAF9]">
+    <div className="flex flex-col py-6 gap-7 flex-1">
+      <FormGroup className="bg-[#F9FAF9] flex-1">
         <Select
           options={transactionTypes}
           label="Tipo de transacción"
@@ -110,7 +110,7 @@ const TransferAccountForm = () => {
           }}
         />
       </FormGroup>
-      <div className="flex items-center justify-center gap-5 grow">
+      <div className="flex items-center  justify-center gap-5 flex-2">
         <button
           className="h-12 border-[#00593B] border px-4 rounded-sm text-[#00593B] caption1 font-medium"
           onClick={() => {

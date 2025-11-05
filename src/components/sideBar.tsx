@@ -48,7 +48,6 @@ const SideBard = () => {
                   size={20}
                   svgClassName={cn({ 'fill-active': selected === index })}
                 />
-                {/* hide label when collapsed, show on md when expanded */}
                 <span
                   className={cn(
                     collapsed ? 'hidden' : 'hidden text-label font-medium caption1 md:inline',

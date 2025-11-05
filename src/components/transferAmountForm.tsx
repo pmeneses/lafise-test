@@ -44,8 +44,8 @@ const TransferAmountForm = () => {
   }, [transferState.amount, setValue]);
 
   return (
-    <div className="flex flex-col py-6 gap-7">
-      <FormGroup className="w-[50%] self-center">
+    <div className="flex flex-col py-6 gap-7 flex-1">
+      <FormGroup className="w-[50%] self-center flex-1">
         <div className="flex flex-col flex-1 gap-2">
           <div className="flex items-center justify-center gap-1">
             {fromAccountData && <p className="currency font-black">{fromAccountData.currency}</p>}
@@ -72,7 +72,7 @@ const TransferAmountForm = () => {
           )}
         </div>
       </FormGroup>
-      <div className="flex items-center justify-center gap-5 grow">
+      <div className="flex items-center justify-center gap-5 flex-2">
         <button
           className="h-12 border-[#00593B] border px-4 rounded-sm text-[#00593B] caption1 font-medium"
           onClick={() => {

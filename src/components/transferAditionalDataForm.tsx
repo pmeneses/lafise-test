@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 import { transferSlice } from '@/store/transfer';
 import FormGroup from './formGroup';
 import { TransferSteps } from '@/constant/transfer';
-import Input from './Input';
 import useAddTransaction from '@/hooks/addTransaction';
+import Input from './Input';
 
 const TransferAditionalDataForm = () => {
   const dispatch = useAppDispatch();
@@ -41,8 +41,8 @@ const TransferAditionalDataForm = () => {
   };
 
   return (
-    <div className="flex flex-col py-6 gap-7">
-      <FormGroup>
+    <div className="flex flex-col py-6 gap-7 flex-1">
+      <FormGroup className="flex-1">
         <Input
           {...register('debitConcept', { required: 'Este campo es requerido' })}
           label="Concepto de débito"
@@ -56,7 +56,7 @@ const TransferAditionalDataForm = () => {
           error={formState.errors.creditConcept?.message}
         />
       </FormGroup>
-      <FormGroup>
+      <FormGroup className="flex-1">
         <Input
           {...register('reference', {
             required: 'Este campo es requerido',
@@ -75,7 +75,7 @@ const TransferAditionalDataForm = () => {
           error={formState.errors.sendConfirmationTo?.message}
         />
       </FormGroup>
-      <div className="flex items-center justify-center gap-5 grow">
+      <div className="flex items-center justify-center gap-5 flex-2">
         <button
           className="h-12 border-[#00593B] border px-4 rounded-sm text-[#00593B] caption1 font-medium"
           onClick={() => {
