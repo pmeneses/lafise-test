@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# lafise-test
 
-## Getting Started
+Proyecto de ejemplo construido con **Next.js (App Router)**, **Tailwind CSS** y **TypeScript**.
 
-First, run the development server:
+Este repositorio implementa una **interfaz de usuario para la gestión de cuentas y transacciones**, integrando **Redux Toolkit**, **componentes reutilizables** y **rutas API internas** que funcionan como *proxy/aggregadores* hacia servicios externos.
+
+---
+
+## Estructura principal
+
+Estructura general del proyecto (carpetas más relevantes):
+
+- **`src/app/`** — Entradas principales de la aplicación (Next.js App Router).  
+  Contiene el `layout.tsx`, los estilos globales y las rutas.
+  - `globals.css` — estilos globales y variables base.
+  - `layout.tsx` — layout principal; importa fuentes y envuelve la app con los providers necesarios (cliente/servidor).
+
+- **`src/components/`** — Componentes UI reutilizables (sidebar, tablas, stepper, inputs, icon wrapper, etc.).
+  - `icon/` — componentes SVG y wrapper principal `Icon`.
+  - `ui/` — componentes base (Input, Table primitives, etc.).
+  - `searchInput.tsx` — componente de búsqueda compuesto por `Input` + icono.
+  - Otros componentes — cards, sections, wrappers, etc.
+
+- **`src/data/`** — Datos estáticos (por ejemplo `menuOptions.ts`).
+
+- **`src/store/`** — Configuración de Redux Toolkit (`transaction`, `user/account`, `app` slices).
+
+- **`src/hooks/`** — Hooks personalizados (`useGetUser`, `useAddTransaction`, etc.).
+
+- **`src/providers/`** — Wrappers cliente (por ejemplo `ReduxProvider` para compatibilidad con Server Components).
+
+---
+
+## Rutas API (Next.js)
+
+- **`GET /api/user`**  
+  Implementado en `src/app/api/user/route.ts`.  
+  Retorna información general del usuario, junto con el catálogo de **cuentas** y **tarjetas**.
+
+- **`GET /api/transactions`**  
+  Implementado en `src/app/api/transactions/route.ts`.  
+  Permite agregar una nueva transacción.
+
+> **Nota:**  
+> Los endpoints Next.js actúan como *proxy/aggregadores* y esperan los servicios externos en  
+> `http://localhost:5566` (`accounts/`, `transactions/`, `users/`).  
+> Asegúrate de tener el backend o los mocks corriendo en ese puerto si dependes de datos reales.
+
+---
+
+##  Mock API requerida
+
+Para que la aplicación funcione correctamente, es necesario levantar el servicio **`mobile-frontend-challenge-mock`**, el cual provee los datos de usuario, cuentas, tarjetas y transacciones.
+
+###  Levantar el mock:
+
+Desde la carpeta del mock:
+```bash
+npm run start-mock
+```
+
+---
+
+## Dependencias principales
+
+- **Next.js 16** (App Router)  
+- **React 19**  
+- **Tailwind CSS 4**  
+- **@reduxjs/toolkit**, **react-redux**  
+- **react-hook-form**  
+- **@radix-ui/react-select**  
+- **react-currency-input-field**
+
+Consulta el archivo `package.json` para ver la lista completa y las versiones exactas.
+
+## Comandos clave
+
+Instalar dependencias:
+
+```bash
+npm install
+```
+
+Ejecutar en modo desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Construir la app para producción:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Formatear el código (Prettier):
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run format        # aplica prettier --write
+npm run format:check  # verifica sin cambiar archivos
+```
