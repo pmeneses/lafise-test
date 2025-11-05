@@ -28,6 +28,7 @@ menuOptions.push({
 menuOptions.push({
   label: 'Mis transacciones',
   icon: 'myTrxIcon',
+  route: '/transactions',
 });
 
 menuOptions.push({

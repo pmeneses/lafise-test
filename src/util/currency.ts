@@ -10,8 +10,8 @@ export const currencySymbols: Record<Currency, string> = {
   [Currency.EUR]: 'EUR',
 };
 
-export function formatCurrency(amount: number, currency: Currency): string {
-  const symbol = currencySymbols[currency] || '';
+export function formatCurrency(amount: number, currency?: Currency): string {
+  const symbol = currency ? currencySymbols[currency] : '';
   const formatted = new Intl.NumberFormat(undefined, {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,

@@ -77,9 +77,9 @@ const TransferAditionalDataForm = () => {
         />
       </FormGroup>
       <FormActions
-        backLabel='Atrás'
-        className='flex-3'
-        continueLabel='Continuar'
+        backLabel="Atrás"
+        className="flex-3"
+        continueLabel="Continuar"
         onBack={() => {
           dispatch(transferSlice.actions.setStep(TransferSteps.Step3));
         }}

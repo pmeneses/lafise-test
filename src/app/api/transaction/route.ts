@@ -46,7 +46,6 @@ export async function POST(req: Request) {
 
     return successResponse(res);
   } catch (err) {
-    console.log(err);
     return errorResponse('Failed to add transaction', 500);
   }
 }

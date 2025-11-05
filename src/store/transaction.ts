@@ -5,6 +5,7 @@ type transactionState = {
   description: string;
   amount: number;
   balance: number;
+  currency: string;
 };
 
 const initialState: transactionState[] = [];
@@ -15,6 +16,9 @@ export const transactionSlice = createSlice({
   reducers: {
     add(state, action: PayloadAction<transactionState>) {
       state.push(action.payload);
+    },
+    addItems(state, action: PayloadAction<transactionState[]>) {
+      state.push(...action.payload);
     },
     clearProducts(state) {
       state = initialState;

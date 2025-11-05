@@ -1,6 +1,7 @@
 'use client';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import * as React from 'react';
 import { transactionSlice } from '@/store/transaction';
 import { transferSlice } from '@/store/transfer';
 import customFetch from '@/util/fetch';
@@ -12,8 +13,8 @@ type Amount = {
 };
 
 type trxResponse = {
-  transaction_number: string;
   description: string;
+  transaction_number: string;
   bank_description: string;
   transaction_type: 'Credit' | 'Debit' | string;
   amount: Amount;
@@ -28,6 +29,7 @@ const useAddTransaction = () => {
   const accounts = useAppSelector((state) =>
     state.user.products.filter((p) => p.type === 'Account'),
   );
+  const submittingRef = React.useRef(false);
 
   const execute = async (params: {
     amount: number;
@@ -38,49 +40,57 @@ const useAddTransaction = () => {
     sendConfirmationTo: string;
     creditConcept: string;
   }) => {
-    const originAccount = accounts.find((a) => Number(a.id) === params.origin);
+    if (submittingRef.current) return;
 
-    if (!originAccount) {
-      alert('Cuenta de origen no encontrada');
-      return;
-    }
+    submittingRef.current = true;
+    try {
+      const originAccount = accounts.find((a) => Number(a.id) === params.origin);
 
-    if (params.origin === params.destination) {
-      alert('La cuenta de origen y destino no pueden ser la misma');
-      return;
-    }
+      if (!originAccount) {
+        alert('Cuenta de origen no encontrada');
+        return;
+      }
 
-    if (originAccount.balance < params.amount) {
-      alert('Fondos insuficientes en la cuenta de origen');
-      return;
-    }
+      if (params.origin === params.destination) {
+        alert('La cuenta de origen y destino no pueden ser la misma');
+        return;
+      }
 
-    const result = await customFetch<trxResponse>(
-      'http://localhost:3000/api/transaction',
-      {
-        method: 'POST',
-      },
-      {
-        ...params,
-        currency: originAccount.currency,
-      },
-    );
+      if (originAccount.balance < params.amount) {
+        alert('Fondos insuficientes en la cuenta de origen');
+        return;
+      }
 
-    if (result) {
-      dispatch(
-        transactionSlice.actions.add({
-          date: result.transaction_date,
-          description: params.creditConcept,
-          amount: result.amount.value,
-          balance: originAccount.balance - result.amount.value,
-        }),
+      const result = await customFetch<trxResponse>(
+        'http://localhost:3000/api/transaction',
+        {
+          method: 'POST',
+        },
+        {
+          ...params,
+          currency: originAccount.currency,
+        },
       );
 
-      dispatch(transferSlice.actions.clear());
+      if (result) {
+        dispatch(
+          transactionSlice.actions.add({
+            date: result.transaction_date,
+            description: params.creditConcept,
+            amount: result.amount.value,
+            balance: originAccount.balance - result.amount.value,
+            currency: originAccount.currency,
+          }),
+        );
 
-      alert('Transferencia realizada con éxito');
+        dispatch(transferSlice.actions.clear());
 
-      route.push('/');
+        alert('Transferencia realizada con éxito');
+
+        route.push('/transactions');
+      }
+    } finally {
+      submittingRef.current = false;
     }
   };
 

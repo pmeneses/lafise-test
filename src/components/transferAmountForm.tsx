@@ -74,9 +74,9 @@ const TransferAmountForm = () => {
         </div>
       </FormGroup>
       <FormActions
-        backLabel='Atrás'
-        className='flex-2'
-        continueLabel='Continuar'
+        backLabel="Atrás"
+        className="flex-2"
+        continueLabel="Continuar"
         onBack={() => {
           dispatch(transferSlice.actions.setStep(TransferSteps.Step2));
         }}

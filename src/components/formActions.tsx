@@ -1,4 +1,4 @@
-import { cn } from "@/util/clsx";
+import { cn } from '@/util/clsx';
 
 type Props = {
   backLabel: string;
@@ -9,7 +9,7 @@ type Props = {
 };
 const FormActions = (props: Props) => {
   return (
-    <div className={cn("flex items-center justify-center gap-5", props.className)}>
+    <div className={cn('flex items-center justify-center gap-5', props.className)}>
       <button
         className="h-12 border-[#00593B] border px-4 rounded-sm text-[#00593B] caption1 font-medium"
         onClick={props.onBack}

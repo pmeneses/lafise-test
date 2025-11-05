@@ -8,7 +8,6 @@ type Props = {
 };
 
 const Input = ({ label, className, error, ...rest }: Props & React.ComponentProps<'input'>) => {
-  // console.log(rest);
   return (
     <div className="flex flex-col flex-1 gap-2 relative">
       {label && (

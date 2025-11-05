@@ -1,19 +1,27 @@
 'use client';
 
 import menuOptions from '@/data/menuOptions';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { cn } from '@/util/clsx';
 import RateChange from './rateChange';
 import Icon from './icon';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAppSelector } from '@/store/hooks';
 
 const SideBard = () => {
   const router = useRouter();
+  const path = usePathname();
   const [selected, setSelected] = React.useState(0);
   const sideBarOpen = useAppSelector((state) => state.app.sidebarOpen);
 
   const collapsed = sideBarOpen === false;
+
+  useEffect(() => {
+    const foundIndex = menuOptions.findIndex((option) => option.route === path);
+    if (foundIndex !== -1) {
+      setSelected(foundIndex);
+    }
+  }, [path]);
 
   return (
     <div

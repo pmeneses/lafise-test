@@ -112,9 +112,9 @@ const TransferAccountForm = () => {
         />
       </FormGroup>
       <FormActions
-        backLabel='Atrás'
-        className='flex-2'
-        continueLabel='Continuar'
+        backLabel="Atrás"
+        className="flex-2"
+        continueLabel="Continuar"
         onBack={() => {
           if (transfer.step === TransferSteps.Step1) {
             router.push('/');

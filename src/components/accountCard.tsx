@@ -10,7 +10,7 @@ type Props = {
 
 const AccountCard = (props: Props) => {
   return (
-    <div className="flex flex-col bg-[#FFFFFF] shadow-[0px_2px_15px_0px_#6868681C] rounded-lg p-4 relative gap-10 min-w-[365px]">
+    <div className="flex flex-col bg-[#FFFFFF] shadow-[0px_2px_15px_0px_#6868681C] rounded-[4px] p-4 relative gap-10 min-w-[365px]">
       <div className="flex flex-col gap-2">
         <h4 className="headline2 font-semibold text-label">{`${props.currency} ${props.alias}`}</h4>
         <div className="flex gap-2 items-center">
