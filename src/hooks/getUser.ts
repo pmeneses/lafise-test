@@ -15,6 +15,7 @@ type Account = {
 };
 
 type ResponseType = {
+  full_name: string;
   profile_photo: string;
   products: Account[];
   transactions: {
@@ -28,6 +29,11 @@ type ResponseType = {
     destination: string;
     date: string;
     balance: number;
+  }[];
+  cards: {
+    accountMask: string;
+    expirationDate: string;
+    type: string;
   }[];
 };
 
@@ -46,6 +52,8 @@ const useGetUser = () => {
       });
 
       if (result) {
+        dispatch(userSlice.actions.setName(result.full_name));
+        dispatch(userSlice.actions.setCards(result.cards));
         dispatch(userSlice.actions.addProducts(result.products));
         dispatch(userSlice.actions.setProfilePhoto(result.profile_photo));
         dispatch(

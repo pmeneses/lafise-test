@@ -75,10 +75,10 @@ const useAddTransaction = () => {
       if (result) {
         dispatch(
           transactionSlice.actions.add({
+            amount: params.amount,
             date: result.transaction_date,
             description: params.creditConcept,
-            amount: result.amount.value,
-            balance: originAccount.balance - result.amount.value,
+            balance: originAccount.balance - params.amount,
             currency: originAccount.currency,
           }),
         );

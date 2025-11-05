@@ -11,7 +11,7 @@ const AccountSection = () => {
   return (
     <div className="flex flex-col gap-4">
       <h2 className="headline2 font-semibold text-label">Cuentas</h2>
-      <div className="flex gap-6 flex-wrap">
+      <div className="flex gap-4 flex-wrap">
         {accounts.map((account) => (
           <AccountCard
             key={account.id}

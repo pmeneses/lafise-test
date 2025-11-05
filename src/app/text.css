@@ -39,3 +39,24 @@
   letter-spacing: 0px;
   font-family: var(--font-poppins);
 }
+
+.cardText {
+  font-size: 12.62px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  font-family: var(--font-lato);
+}
+
+.cardTextSmall {
+  font-size: 7.18px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  font-family: var(--font-lato);
+}
+
+.cardNumber {
+  font-size: 21.49px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  font-family: var(--font-quicksand);
+}

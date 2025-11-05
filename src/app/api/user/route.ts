@@ -1,3 +1,5 @@
+import { CardsData } from '@/data/userCards';
+import ProductsData from '@/data/userProducts';
 import { errorResponse } from '@/util/error-response';
 import customFetch from '@/util/fetch';
 import { successResponse } from '@/util/success-response';
@@ -44,6 +46,11 @@ export async function GET(_: Request) {
     type UserResponse = {
       full_name: string;
       profile_photo: string;
+      cards: {
+        accountMask: string;
+        expirationDate: string;
+        type: string;
+      }[];
       products: {
         type: string;
         id: string;
@@ -117,6 +124,9 @@ export async function GET(_: Request) {
         trxSeen.add(key);
         return true;
       });
+
+    res.cards = CardsData;
+    res.products.push(...ProductsData);
 
     return successResponse(res);
   } catch (err) {

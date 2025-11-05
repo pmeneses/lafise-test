@@ -21,6 +21,7 @@ export const variants = {
   menuIcon: require('./assets/menuIcon'),
   notifyIcon: require('./assets/notifyIcon'),
   searchIcon: require('./assets/searchIcon'),
+  companyLogoWhiteIcon: require('./assets/companyLogoWhite'),
 };
 
 export type IconPropsTypes = {
